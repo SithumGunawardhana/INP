@@ -9,13 +9,13 @@ public class Server {
     private static ArrayList<Client> clients=new ArrayList<Client>();
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(9000);
+        ServerSocket serverSocket = new ServerSocket(600);
         Socket accept;
 
         while (true){
-            System.out.println("wait..");
-            accept=serverSocket.accept();
-            System.out.println("Client Connected..");
+            System.out.println("Waiting for Client ...");
+            accept = serverSocket.accept();
+            System.out.println("Client Connected");
             Client clientThread = new Client(accept, clients);
             clients.add(clientThread);
             clientThread.start();

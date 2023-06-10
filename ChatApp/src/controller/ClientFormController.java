@@ -17,7 +17,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 
@@ -41,7 +40,7 @@ public class ClientFormController extends Thread {
         lblName.setText(userName);
 
         try {
-            socket=new Socket("local host",9000);
+            socket=new Socket("localhost",600);
             System.out.println("Connected.");
             reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer=new PrintWriter(socket.getOutputStream(),true);
@@ -55,19 +54,16 @@ public class ClientFormController extends Thread {
 
 @Override
     public void run(){
-
         try {
         while (true){
             String msg = reader.readLine();
             String[] tokens = msg.split(" ");
             String cmd = tokens[0];
 
-
             StringBuilder fullMsg = new StringBuilder();
             for (int i = 1; i < tokens.length; i++) {
                 fullMsg.append(tokens[i]+" ");
             }
-
 
             String[] msgToAr = msg.split(" ");
             String st = "";
@@ -75,19 +71,14 @@ public class ClientFormController extends Thread {
                 st += msgToAr[i + 1] + " ";
             }
 
-
             Text text = new Text(st);
             String firstChars = "";
             if (st.length() > 3) {
                 firstChars = st.substring(0, 3);
-
             }
 
-
             if (firstChars.equalsIgnoreCase("img")) {
-
                 st = st.substring(3, st.length() - 1);
-
 
                 File file = new File(st);
                 Image image = new Image(file.toURI().toString());
@@ -97,22 +88,20 @@ public class ClientFormController extends Thread {
                 imageView.setFitHeight(150);
                 imageView.setFitWidth(200);
 
-
                 HBox hBox = new HBox(10);
                 hBox.setAlignment(Pos.BOTTOM_RIGHT);
-
 
                 if (!cmd.equalsIgnoreCase(lblName.getText())) {
 
                     vBox.setAlignment(Pos.TOP_LEFT);
                     hBox.setAlignment(Pos.CENTER_LEFT);
 
-
                     Text text1 = new Text("  " + cmd + " :");
                     hBox.getChildren().add(text1);
                     hBox.getChildren().add(imageView);
 
-                } else {
+                }
+                else {
                     hBox.setAlignment(Pos.BOTTOM_RIGHT);
                     hBox.getChildren().add(imageView);
                     Text text1 = new Text(": Me ");
@@ -121,7 +110,6 @@ public class ClientFormController extends Thread {
                 }
 
                 Platform.runLater(() -> vBox.getChildren().addAll(hBox));
-
 
             } else {
 
@@ -140,17 +128,14 @@ public class ClientFormController extends Thread {
 
                 HBox hBox = new HBox(12); //12
 
-
-
-
                 if (!cmd.equalsIgnoreCase(lblName.getText() + ":")) {
-
 
                     vBox.setAlignment(Pos.TOP_LEFT);
                     hBox.setAlignment(Pos.CENTER_LEFT);
                     hBox.getChildren().add(flow);
 
-                } else {
+                }
+                else {
 
                     Text text2 = new Text(fullMsg + ": Me");
                     TextFlow flow2 = new TextFlow(text2);
@@ -166,11 +151,8 @@ public class ClientFormController extends Thread {
             e.printStackTrace();
         }
 
-
-
     }
     public void btnSendOnAction(ActionEvent actionEvent) {
-        try {
             String msg = txtEnter.getText();
             writer.println(lblName.getText() + ":" + msg);
             txtEnter.clear();
@@ -178,9 +160,7 @@ public class ClientFormController extends Thread {
             if (msg.equalsIgnoreCase("Logout")) {
                 System.exit(0);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void btnImgOnAction(ActionEvent actionEvent) {
