@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="403.0" fitWidth="300.0">
+         <image>
+            <Image url="@../asscent/loginBg.jpg" />
+         </image>
+         <rotationAxis>
+            <Point3D x="10.0" z="1.0" />
+         </rotationAxis>
+      </ImageView>
+      <Label layoutX="103.0" layoutY="42.0" prefHeight="34.0" prefWidth="122.0" text="SithChat" />
+      <ImageView fitHeight="80.0" fitWidth="200.0" layoutX="50.0" layoutY="36.0" opacity="0.88">
+         <image>
+            <Image url="@../asscent/Sith.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUserName" layoutX="70.0" layoutY="277.0" promptText="user name" />
+      <Button layoutX="119.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnLoginOnAction" opacity="0.85" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: white;" text="Login" textFill="#0d0d0d">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+         <rotationAxis>
+            <Point3D x="10.0" z="1.0" />
+         </rotationAxis>
+      </Button>
+      <ImageView fitHeight="135.0" fitWidth="107.0" layoutX="97.0" layoutY="142.0">
+         <image>
+            <Image url="@../asscent/lg.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
